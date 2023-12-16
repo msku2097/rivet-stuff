@@ -1,0 +1,96 @@
+version: 4
+data:
+  attachedData:
+    trivet:
+      testSuites: []
+      version: 1
+  graphs:
+    hNW11bWv2Vv7LFDCspCPJ:
+      metadata:
+        description: ""
+        id: hNW11bWv2Vv7LFDCspCPJ
+        name: test01-KC
+      nodes:
+        '[5Hx5tQGXshQVP05dlRhTC]:graphOutput "Graph Output"':
+          data:
+            dataType: string
+            id: output
+          visualData: -941.272016502398/-400.7083020648031/330/8//
+        '[MRrl-7DMGhggRLVj2_PUu]:assemblePrompt "Assemble Prompt"':
+          outgoingConnections:
+            - prompt->"Loop Controller" dkb-KTSmWkiGKxfOhJC-X/input2
+          visualData: 173.32527043405935/488.4006733019225/280/null//
+        '[cMnCov_hi1ov9-M5zCWaj]:chat "Chat"':
+          data:
+            cache: false
+            enableFunctionUse: false
+            frequencyPenalty: 0
+            maxTokens: 1024
+            model: gpt-3.5-turbo
+            presencePenalty: 0
+            stop: ""
+            temperature: 0.5
+            top_p: 1
+            useAsGraphPartialOutput: true
+            useFrequencyPenaltyInput: false
+            useMaxTokensInput: false
+            useModelInput: false
+            usePresencePenaltyInput: false
+            useStop: false
+            useStopInput: false
+            useTemperatureInput: false
+            useTopP: false
+            useTopPInput: false
+            useUseTopPInput: false
+            useUserInput: false
+          outgoingConnections:
+            - response->"Prompt" lpOMrPHGyKJMZOTLNzgWO/input
+          visualData: 6.488263353203138/-18.161323364039475/230/2//
+        '[dkb-KTSmWkiGKxfOhJC-X]:loopController "Loop Controller"':
+          data:
+            maxIterations: 100
+          outgoingConnections:
+            - break->"Graph Output" 5Hx5tQGXshQVP05dlRhTC/value
+            - output1->"User Input" pI_7bL4uKw5yTDnTEQY9D/questions
+            - output2->"Assemble Prompt" sYgjLWWRI9Ej9aoWorBs7/message1
+          visualData: -1850.360968843656/67.39401562425951/280/4//
+        '[hMmasT08soMFr_9CxQ4hG]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: Hello, how can I help you today?
+            type: assistant
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Loop Controller" dkb-KTSmWkiGKxfOhJC-X/input1Default
+            - output->"Loop Controller" dkb-KTSmWkiGKxfOhJC-X/input2Default
+          visualData: -2512.5544914281836/85.94685138632605/280/5//
+        '[lpOMrPHGyKJMZOTLNzgWO]:prompt "Prompt"':
+          data:
+            enableFunctionCall: false
+            promptText: "{{input}}"
+            type: assistant
+            useTypeInput: false
+          outgoingConnections:
+            - output->"Assemble Prompt" MRrl-7DMGhggRLVj2_PUu/message2
+            - output->"Loop Controller" dkb-KTSmWkiGKxfOhJC-X/input1
+          visualData: 560.0805390125228/-48.204422585539476/280/7//
+        '[pI_7bL4uKw5yTDnTEQY9D]:userInput "User Input"':
+          data:
+            prompt: This is an example question?
+            useInput: true
+          outgoingConnections:
+            - output->"Assemble Prompt" sYgjLWWRI9Ej9aoWorBs7/message2
+          visualData: -1206.720282021195/-118.13434199640542/280/6//
+        '[sYgjLWWRI9Ej9aoWorBs7]:assemblePrompt "Assemble Prompt"':
+          outgoingConnections:
+            - prompt->"Assemble Prompt" MRrl-7DMGhggRLVj2_PUu/message1
+            - prompt->"Chat" cMnCov_hi1ov9-M5zCWaj/prompt
+          visualData: -750.0350940318659/111.63539321072585/280/3//
+  metadata:
+    description: ""
+    id: ecuYuuXsS4JTPcJG5s97F
+    title: Untitled Project
+  plugins:
+    - id: openai
+      name: OpenAI
+      type: built-in
